@@ -80,7 +80,7 @@ def datainit():
     admin=User.query.filter_by(username='admin').first()
     if not admin:
         print ("make admin in admin")
-        admin=User(username='admin',email=os.environ.get('ADMIN_MAIL'),password=os.environ.get('ADMIN_PASSWD'),confirmed=True)
+        admin=User(username='admin',email=os.environ.get('FLASK_ADMIN'),password=os.environ.get('FLASK_ADMIN_PASSWD'),confirmed=True)
         admin.role=Role.query.filter_by(permissions=0xff).first()
         db.session.add(admin)
         db.session.commit()        
