@@ -77,15 +77,15 @@ def datainit():
     print ("User and Post generate")
     User.generate_fake(100)
     Post.generate_fake(100)    
-    wen=User.query.filter_by(username='wen').first()
-    if not wen:
-        print ("make wen in admin")
-        wen=User(username='wen',email='2535199139@qq.com',password='meian',confirmed=True)
-        wen.role=Role.query.filter_by(permissions=0xff).first()
-        db.session.add(wen)
+    admin=User.query.filter_by(username='admin').first()
+    if not admin:
+        print ("make admin in admin")
+        admin=User(username='admin',email=os.environ.get('ADMIN_MAIL'),password=os.environ.get('ADMIN_PASSWD'),confirmed=True)
+        admin.role=Role.query.filter_by(permissions=0xff).first()
+        db.session.add(admin)
         db.session.commit()        
     else :
-        print ("User(wen) already in data")    
+        print ("User(admin) already in data")    
     print ("all_data readly now")
 
 
